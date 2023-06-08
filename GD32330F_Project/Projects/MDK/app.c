@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-08 12:39:52
+ * @LastEditTime : 2023-06-08 12:44:15
  * @FilePath     : app.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -35,6 +35,17 @@
 LOCK_STATE Global_Lock_State;
 
 void Global_Lock_State_Init(void)
+{
+    return;
+}
+
+void App_Init(void)
+{
+    Global_Lock_State_Init();
+    return;
+}
+
+void App_Running(void)
 {
     return;
 }
