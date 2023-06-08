@@ -2,6 +2,8 @@
     "files.associations": {
         "gd32f330f_start.h": "c",
         "systick.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "gd32f3x0.h": "c",
+        "app.h": "c"
     }
 }

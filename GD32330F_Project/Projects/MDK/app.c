@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-08 12:44:15
+ * @LastEditTime : 2023-06-08 12:50:02
  * @FilePath     : app.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -41,6 +41,7 @@ void Global_Lock_State_Init(void)
 
 void App_Init(void)
 {
+    Systick_Init();
     Global_Lock_State_Init();
     return;
 }
