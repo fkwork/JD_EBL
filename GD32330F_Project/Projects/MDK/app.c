@@ -2,13 +2,14 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-08 12:50:02
+ * @LastEditTime : 2023-06-08 14:29:15
  * @FilePath     : app.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
  */
 
 #include "app.h"
+#include "port.h"
 #include <stdio.h>
 
 /**
@@ -32,21 +33,65 @@
     ==================================================================================
 **/
 
-LOCK_STATE Global_Lock_State;
+LOCK_STATE Global_Lock_State = {RESET, RESET, RESET, 0, 0, 0};
 
-void Global_Lock_State_Init(void)
+static void Lock_Close(void)
 {
     return;
+}
+
+static void Lock_Open(void)
+{
+    return;
+}
+
+void Get_Lock_State(void)
+{
+    FlagStatus Ret = RESET;
+    //
+    Ret = Get_DI_State(DOOR_PIN);
+    //
+    Global_Lock_State.DoorState = Ret ? ON : OFF;
+    //
+    Ret = Get_DI_State(TONGUE_PIN);
+    //
+    Global_Lock_State.TongueState = Ret ? ON : OFF;
+    //
+    Ret = Get_DI_State(OPEN_SIGNAL_PIN);
+    //
+    Global_Lock_State.OpenSignalState = Ret ? ON : OFF;
+}
+
+static void Lock_Init_Control(void)
+{
+    if (Get_DI_State(DOOR_PIN) == SET)
+    {
+        Delay_Ms(100);
+        if (Get_DI_State(DOOR_PIN) == SET)
+        {
+            Lock_Open();
+        }
+    }
+    return;
+}
+
+static void Lock_Run_Control(void)
+{
+        return;
 }
 
 void App_Init(void)
 {
     Systick_Init();
-    Global_Lock_State_Init();
     return;
 }
 
 void App_Running(void)
 {
+    Lock_Init_Control();
+    for (;;)
+    {
+        Get_Lock_State();
+    }
     return;
 }

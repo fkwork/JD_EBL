@@ -4,6 +4,10 @@
         "systick.h": "c",
         "stdio.h": "c",
         "gd32f3x0.h": "c",
-        "app.h": "c"
+        "app.h": "c",
+        "di.h": "c",
+        "port.h": "c",
+        "limits": "c",
+        "type_traits": "c"
     }
 }

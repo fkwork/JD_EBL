@@ -7,3 +7,10 @@
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
  */
+#ifndef _TIMER_H_
+#define _TIMER_H_
+
+#include "gd32f3x0.h"
+#include "systick.h"
+
+#endif
