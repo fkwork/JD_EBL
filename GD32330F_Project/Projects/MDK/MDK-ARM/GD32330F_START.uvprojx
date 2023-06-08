@@ -531,16 +531,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>GD32F3x0_START</GroupName>
-          <Files>
-            <File>
-              <FileName>gd32f330f_start.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Utilities\gd32f330f_start.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Startup</GroupName>
           <Files>
             <File>

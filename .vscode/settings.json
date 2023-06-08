@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "gd32f330f_start.h": "c",
+        "systick.h": "c"
+    }
+}

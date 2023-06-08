@@ -26,7 +26,6 @@
 ".\output\gd32f3x0_tsi.o"
 ".\output\gd32f3x0_usart.o"
 ".\output\gd32f3x0_wwdgt.o"
-".\output\gd32f330f_start.o"
 ".\output\startup_gd32f3x0.o"
 ".\output\segger_rtt.o"
 ".\output\segger_rtt_printf.o"

@@ -28,7 +28,6 @@
 .\output\main.o: ..\..\..\..\GD32F3x0_Firmware_Library\GD32F3x0_standard_peripheral\Include\gd32f3x0_wwdgt.h
 .\output\main.o: ..\..\..\..\GD32F3x0_Firmware_Library\GD32F3x0_standard_peripheral\Include\gd32f3x0_misc.h
 .\output\main.o: ..\..\..\..\GD32F3x0_Firmware_Library\GD32F3x0_standard_peripheral\Include\gd32f3x0_tsi.h
-.\output\main.o: ..\..\..\Utilities\gd32f330f_start.h
 .\output\main.o: ..\systick.h
 .\output\main.o: ..\..\..\RTT\SEGGER_RTT.h
 .\output\main.o: ..\..\..\RTT\SEGGER_RTT_Conf.h
