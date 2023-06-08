@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-08 14:29:15
+ * @LastEditTime : 2023-06-08 15:04:07
  * @FilePath     : app.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -33,32 +33,38 @@
     ==================================================================================
 **/
 
-LOCK_STATE Global_Lock_State = {RESET, RESET, RESET, 0, 0, 0};
+LOCK_STATE Global_Lock_State = {OFF, OFF, OFF};
 
+/**
+ *  func: 关闭锁
+ */
 static void Lock_Close(void)
 {
     return;
 }
 
+/**
+ *  func: 打开锁
+ */
 static void Lock_Open(void)
 {
     return;
 }
 
+/**
+ *  func: 读取DI输入，获取锁状态
+ */
 void Get_Lock_State(void)
 {
     FlagStatus Ret = RESET;
     //
     Ret = Get_DI_State(DOOR_PIN);
-    //
     Global_Lock_State.DoorState = Ret ? ON : OFF;
     //
     Ret = Get_DI_State(TONGUE_PIN);
-    //
     Global_Lock_State.TongueState = Ret ? ON : OFF;
     //
     Ret = Get_DI_State(OPEN_SIGNAL_PIN);
-    //
     Global_Lock_State.OpenSignalState = Ret ? ON : OFF;
 }
 
@@ -77,7 +83,7 @@ static void Lock_Init_Control(void)
 
 static void Lock_Run_Control(void)
 {
-        return;
+    return;
 }
 
 void App_Init(void)
