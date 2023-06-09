@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:23:49
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-09 08:27:48
+ * @LastEditTime : 2023-06-09 08:57:13
  * @FilePath     : app.h
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -35,9 +35,11 @@ typedef enum
 typedef struct
 {
     DoorStatus DoorCurrentState;
-    DoorStatus DoorLastState;
+    DoorStatus LastDoorState;
     TongueStatus TongueState;
-    OpenSignalStatus OpenSignalState
+    TongueStatus LastTongueState;
+    OpenSignalStatus OpenSignalState;
+    OpenSignalStatus LastOpenSignalState
 } DEVICE_STATE;
 
 typedef struct

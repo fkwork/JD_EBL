@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-09 08:47:54
+ * @LastEditTime : 2023-06-09 09:07:15
  * @FilePath     : app.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -13,7 +13,7 @@
 #include "timer.h"
 #include <stdio.h>
 
-DEVICE_STATE Global_LockDevice_State = {CLOSE, CLOSE, EXTEND, DO_CLOSE};
+DEVICE_STATE Global_LockDevice_State = {CLOSE, CLOSE, EXTEND, EXTEND, DO_CLOSE, DO_CLOSE};
 
 /**
  *  func: 关闭锁
@@ -55,12 +55,38 @@ void Get_LockDevice_State(void)
     // 通过门磁状态判断：门开-门关
     Ret = Get_DI_State(DOOR_PIN);
     Global_LockDevice_State.DoorCurrentState = Ret ? CLOSE : OPEN;
+
+    if (Global_LockDevice_State.DoorCurrentState != Global_LockDevice_State.LastDoorState)
+    {
+        if (Global_LockDevice_State.DoorCurrentState == OPEN)
+            printf("Door State Change, Now Open.");
+        else
+            printf("Door State Change, Now Close.");
+    }
+
     // 通过锁舌状态判断：锁开-锁关
     Ret = Get_DI_State(TONGUE_PIN);
     Global_LockDevice_State.TongueState = Ret ? INSERT : EXTEND;
+
+    if (Global_LockDevice_State.TongueState != Global_LockDevice_State.LastTongueState)
+    {
+        if (Global_LockDevice_State.TongueState == INSERT)
+            printf("Tongue State Change, Now Insert  [");
+        else
+            printf("Tongue State Change, Now Extend <[");
+    }
+
     // 通过开门信号判断：外部开门
     Ret = Get_DI_State(OPEN_SIGNAL_PIN);
     Global_LockDevice_State.OpenSignalState = Ret ? DO_CLOSE : DO_OPEN;
+
+    if (Global_LockDevice_State.OpenSignalState != Global_LockDevice_State.LastOpenSignalState)
+    {
+        if (Global_LockDevice_State.OpenSignalState == DO_OPEN)
+            printf("Open Signal Change, Now Do Open.");
+        else
+            printf("Open Signal Change, Now Do Close.");
+    }
     return;
 }
 
