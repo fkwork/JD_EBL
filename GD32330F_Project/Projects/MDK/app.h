@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:23:49
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-08 14:24:24
+ * @LastEditTime : 2023-06-09 08:27:48
  * @FilePath     : app.h
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -17,17 +17,39 @@
 
 typedef enum
 {
-    OFF = 0,
-    ON  = !OFF
-} LockStatus;
+    CLOSE = 0,
+    OPEN = !CLOSE
+} DoorStatus;
+
+typedef enum
+{
+    INSERT = 0,
+    EXTEND = !INSERT
+} TongueStatus;
+
+typedef enum
+{
+    DO_OPEN = 0,
+    DO_CLOSE = !DO_OPEN
+} OpenSignalStatus;
 typedef struct
 {
-    LockStatus DoorState;
-    LockStatus TongueState;
-    LockStatus OpenSignalState
-} LOCK_STATE;
+    DoorStatus DoorCurrentState;
+    DoorStatus DoorLastState;
+    TongueStatus TongueState;
+    OpenSignalStatus OpenSignalState
+} DEVICE_STATE;
 
-extern LOCK_STATE Global_Lock_State;
+typedef struct
+{
+    uint32_t CurValue;
+    uint32_t LastValue
+} CTRL_TIMESTAMP;
+
+#define TIME_DELAY_DOOR_CLOSE_NO_OPEN 10u
+#define TIME_DELAY_DOOR_OPEN_THEN_CLOSE 3u
+
+extern DEVICE_STATE Global_LockDevice_State;
 
 extern void App_Init(void);
 extern void App_Running(void);

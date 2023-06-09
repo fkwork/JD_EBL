@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-08 15:15:50
+ * @LastEditTime : 2023-06-09 08:47:31
  * @FilePath     : timer.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -22,7 +22,7 @@
 
 static uint32_t t_count = 0;
 
-void Timer5_Init(void)
+void Timer15_Init(void)
 {
     /* ----------------------------------------------------------------------------
     TIMER2 Configuration:
@@ -88,7 +88,7 @@ uint8_t Try_Time_Out(uint32_t cur_time, uint32_t last_time, uint32_t u_tick)
  *  PWM频率计算方法：200000/(timer_initpara.period + 1)
  *  ---------------------------------------------------
  *  例如：10Khz PWM => 200000/100000 = (199+1)
- *  占空比设定范围：[0 - 199] => [0% - 100%]
+ *  占空比设定范围：[0 - 200] => [0% - 100%]
  *  ---------------------------------------------------
  */
 void Lock_PWM_Init(void)
@@ -99,7 +99,7 @@ void Lock_PWM_Init(void)
     rcu_periph_clock_enable(RCU_GPIOA);
     gpio_mode_set(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_0);
     gpio_output_options_set(GPIOA, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_0);
-    gpio_af_set(GPIOA, GPIO_AF_1, GPIO_PIN_0);
+    gpio_af_set(GPIOA, GPIO_AF_2, GPIO_PIN_0);
 
     rcu_periph_clock_enable(RCU_TIMER1);
     timer_deinit(TIMER1);
@@ -124,18 +124,21 @@ void Lock_PWM_Init(void)
     timer_primary_output_config(TIMER1, ENABLE);
     /* auto-reload preload enable */
     timer_enable(TIMER1);
+    return;
 }
 
 /*
     PWM 占空比100时，锁舌吸合，锁开
     PWM 占空比  0时，锁舌弹出，锁关
 */
-void LOCK_ON(void)
+void Lock_ON_Out(void)
 {
     timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_0, 100);
+    return;
 }
 
-void LOCK_OFF(void)
+void Lock_OFF_Out(void)
 {
     timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_0, 0);
+    return;
 }
