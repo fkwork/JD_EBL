@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-09 09:07:15
+ * @LastEditTime : 2023-06-12 09:48:09
  * @FilePath     : app.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -185,6 +185,7 @@ void App_Init(void)
     Port_Init();
     Timer15_Init();
     Lock_PWM_Init();
+    printf("HelloWorld\r\n");
     return;
 }
 
@@ -196,5 +197,4 @@ void App_Running(void)
         Get_LockDevice_State();
         Lock_Run_Control();
     }
-    return;
 }

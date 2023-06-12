@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-09 08:47:31
+ * @LastEditTime : 2023-06-12 10:17:17
  * @FilePath     : timer.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -39,7 +39,7 @@ void Timer15_Init(void)
     /* initialize TIMER init parameter struct */
     timer_struct_para_init(&timer_initpara);
     /* TIMER2 configuration */
-    timer_initpara.prescaler = 7199;
+    timer_initpara.prescaler = 8399;
     timer_initpara.alignedmode = TIMER_COUNTER_EDGE;
     timer_initpara.counterdirection = TIMER_COUNTER_UP;
     timer_initpara.period = 9999;
@@ -64,6 +64,7 @@ void TIMER15_IRQHandler(void)
     if (SET == timer_interrupt_flag_get(TIMER15, TIMER_INT_FLAG_UP))
     {
         t_count++;
+        printf("t_count:%d\r\n", t_count);
         timer_interrupt_flag_clear(TIMER15, TIMER_INT_FLAG_UP);
     }
 }

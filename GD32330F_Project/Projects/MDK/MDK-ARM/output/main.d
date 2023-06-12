@@ -1,4 +1,5 @@
 .\output\main.o: ..\main.c
+.\output\main.o: ..\app.h
 .\output\main.o: ..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\GD\GD32F3x0\Include\gd32f3x0.h
 .\output\main.o: ..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\core_cm4.h
 .\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h

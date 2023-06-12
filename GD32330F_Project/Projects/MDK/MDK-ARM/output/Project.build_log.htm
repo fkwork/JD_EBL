@@ -22,16 +22,20 @@ Dialog DLL:      TCM.DLL V1.48.0.0
  
 <h2>Project:</h2>
 D:\Workplace\Code\JD_EBL\GD32330F_Project\Projects\MDK\MDK-ARM\GD32330F_START.uvprojx
-Project File Date:  06/08/2023
+Project File Date:  06/12/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'GD32F330F_START'
-compiling main.c...
+compiling timer.c...
+..\timer.c(31): warning:  #177-D: variable "timer_ocinitpara"  was declared but never referenced
+      timer_oc_parameter_struct timer_ocinitpara;
+..\timer.c: 1 warning, 0 errors
+compiling system_gd32f3x0.c...
 linking...
-Program Size: Code=1416 RO-data=368 RW-data=8 ZI-data=1024  
+Program Size: Code=4004 RO-data=388 RW-data=16 ZI-data=2232  
 FromELF: creating hex file...
-".\output\Project.axf" - 0 Error(s), 0 Warning(s).
+".\output\Project.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -44,7 +48,7 @@ Package Vendor: GigaDevice
   C:\Users\wangchao\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

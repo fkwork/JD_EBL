@@ -32,6 +32,7 @@ typedef enum
     DO_OPEN = 0,
     DO_CLOSE = !DO_OPEN
 } OpenSignalStatus;
+
 typedef struct
 {
     DoorStatus DoorCurrentState;
@@ -39,13 +40,13 @@ typedef struct
     TongueStatus TongueState;
     TongueStatus LastTongueState;
     OpenSignalStatus OpenSignalState;
-    OpenSignalStatus LastOpenSignalState
+    OpenSignalStatus LastOpenSignalState;
 } DEVICE_STATE;
 
 typedef struct
 {
     uint32_t CurValue;
-    uint32_t LastValue
+    uint32_t LastValue;
 } CTRL_TIMESTAMP;
 
 #define TIME_DELAY_DOOR_CLOSE_NO_OPEN 10u
