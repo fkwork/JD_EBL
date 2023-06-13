@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-12 10:17:17
+ * @LastEditTime : 2023-06-13 10:41:38
  * @FilePath     : timer.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -64,7 +64,6 @@ void TIMER15_IRQHandler(void)
     if (SET == timer_interrupt_flag_get(TIMER15, TIMER_INT_FLAG_UP))
     {
         t_count++;
-        printf("t_count:%d\r\n", t_count);
         timer_interrupt_flag_clear(TIMER15, TIMER_INT_FLAG_UP);
     }
 }
@@ -105,7 +104,7 @@ void Lock_PWM_Init(void)
     rcu_periph_clock_enable(RCU_TIMER1);
     timer_deinit(TIMER1);
     /* TIMER1 configuration */
-    timer_initpara.prescaler = 35;
+    timer_initpara.prescaler = 41;
     timer_initpara.alignedmode = TIMER_COUNTER_EDGE;
     timer_initpara.counterdirection = TIMER_COUNTER_UP;
     timer_initpara.period = 124;
@@ -128,18 +127,20 @@ void Lock_PWM_Init(void)
     return;
 }
 
+uint8_t pulse_value = 84;
+
 /*
     PWM 占空比100时，锁舌吸合，锁开
     PWM 占空比  0时，锁舌弹出，锁关
 */
 void Lock_ON_Out(void)
 {
-    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_0, 100);
+    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_0, pulse_value);
     return;
 }
 
 void Lock_OFF_Out(void)
 {
-    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_0, 0);
+    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_0, 13);
     return;
 }
