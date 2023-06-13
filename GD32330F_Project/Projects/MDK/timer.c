@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-13 10:41:38
+ * @LastEditTime : 2023-06-13 13:42:32
  * @FilePath     : timer.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -127,7 +127,7 @@ void Lock_PWM_Init(void)
     return;
 }
 
-uint8_t pulse_value = 84;
+int8_t pulse_value = 0;
 
 /*
     PWM 占空比100时，锁舌吸合，锁开
@@ -135,12 +135,34 @@ uint8_t pulse_value = 84;
 */
 void Lock_ON_Out(void)
 {
-    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_0, pulse_value);
+    uint8_t index = 0;
+    pulse_value = 0;
+    for (index = 1; index <= 10; index++)
+    {
+        timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_0, pulse_value);
+        Delay_Ms(50);
+        pulse_value += (uint8_t)(index * 8);
+        if (pulse_value > 80)
+        {
+            pulse_value = 80;
+        }
+    }
     return;
 }
 
 void Lock_OFF_Out(void)
 {
-    timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_0, 13);
+    uint8_t index = 0;
+    pulse_value = 84;
+    for (index = 1; index <= 10; index++)
+    {
+        timer_channel_output_pulse_value_config(TIMER1, TIMER_CH_0, pulse_value);
+        Delay_Ms(50);
+        pulse_value = pulse_value - (index * 8);
+        if (pulse_value < 0)
+        {
+            pulse_value = 0;
+        }
+    }
     return;
 }

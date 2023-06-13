@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:54:34
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-13 12:52:10
+ * @LastEditTime : 2023-06-13 13:02:29
  * @FilePath     : port.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -53,7 +53,15 @@ FlagStatus Get_DI_State(LOCK_DI_PIN port)
     case TONGUE_PIN:
         return gpio_input_bit_get(GPIOA, GPIO_PIN_10);
     case OPEN_SIGNAL_PIN:
-        return gpio_input_bit_get(GPIOA, GPIO_PIN_2);
+        if (gpio_input_bit_get(GPIOA, GPIO_PIN_2) == 0)
+        {
+            Delay_Ms(100);
+            if (gpio_input_bit_get(GPIOA, GPIO_PIN_2) == 0)
+            {
+                return RESET;
+            }
+        }
+        return SET;
     default:
         break;
     }

@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-13 12:48:41
+ * @LastEditTime : 2023-06-13 13:29:42
  * @FilePath     : app.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -85,10 +85,8 @@ void Get_LockDevice_State(void)
 
     // 通过开门信号判断：外部开门
     Ret = Get_DI_State(OPEN_SIGNAL_PIN);
-    printf("OPEN_SIGNAL_PIN:%d\r\n", Ret);
+    // printf("OPEN_SIGNAL_PIN:%d\r\n", Ret);
     Global_LockDevice_State.OpenSignalState = Ret ? DO_CLOSE : DO_OPEN;
-    printf("OpenSignalState:%d\r\n", Global_LockDevice_State.OpenSignalState);
-    printf("LastOpenSignalState:%d\r\n", Global_LockDevice_State.LastOpenSignalState);
     if (Global_LockDevice_State.OpenSignalState != Global_LockDevice_State.LastOpenSignalState)
     {
         if (Global_LockDevice_State.OpenSignalState == DO_OPEN)
@@ -162,6 +160,7 @@ static void Lock_Run_Control(void)
         if (Try_Time_Out(CtrlTimestamp.CurValue, CtrlTimestamp.LastValue, TIME_DELAY_DOOR_CLOSE_NO_OPEN))
         {
             Lock_Close();
+            printf("LOCK CLOSE(): %d\r\n", __LINE__);
         }
     }
 
@@ -182,6 +181,7 @@ static void Lock_Run_Control(void)
         CtrlTimestamp.CurValue = Get_Current_TC();
         if (Try_Time_Out(CtrlTimestamp.CurValue, CtrlTimestamp.LastValue, TIME_DELAY_DOOR_OPEN_THEN_CLOSE))
         {
+            printf("LOCK CLOSE(): %d\r\n", __LINE__);
             Lock_Close();
             DoorOpenToCloseState = FALSE;
         }
@@ -196,7 +196,6 @@ void App_Init(void)
     Port_Init();
     Timer15_Init();
     Lock_PWM_Init();
-    printf("HelloWorld\r\n");
     return;
 }
 
@@ -213,7 +212,7 @@ void App_Running(void)
     for (;;)
     {
         Get_LockDevice_State();
-        delay_1ms(2000);
+        // delay_1ms(2000);
     }
 #endif
 }
