@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-13 12:36:23
+ * @LastEditTime : 2023-06-13 12:48:41
  * @FilePath     : app.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -87,7 +87,8 @@ void Get_LockDevice_State(void)
     Ret = Get_DI_State(OPEN_SIGNAL_PIN);
     printf("OPEN_SIGNAL_PIN:%d\r\n", Ret);
     Global_LockDevice_State.OpenSignalState = Ret ? DO_CLOSE : DO_OPEN;
-
+    printf("OpenSignalState:%d\r\n", Global_LockDevice_State.OpenSignalState);
+    printf("LastOpenSignalState:%d\r\n", Global_LockDevice_State.LastOpenSignalState);
     if (Global_LockDevice_State.OpenSignalState != Global_LockDevice_State.LastOpenSignalState)
     {
         if (Global_LockDevice_State.OpenSignalState == DO_OPEN)

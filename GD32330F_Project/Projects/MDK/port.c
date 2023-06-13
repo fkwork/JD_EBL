@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:54:34
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-13 10:57:50
+ * @LastEditTime : 2023-06-13 12:52:10
  * @FilePath     : port.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -65,10 +65,10 @@ void Set_DO_State(LOCK_DO_PIN port, FlagStatus state)
     switch (port)
     {
     case DOOR_OUT_PIN:
-        state ? gpio_bit_set(GPIOA, GPIO_PIN_1) : gpio_bit_set(GPIOA, GPIO_PIN_1);
+        state ? gpio_bit_set(GPIOA, GPIO_PIN_1) : gpio_bit_reset(GPIOA, GPIO_PIN_1);
         break;
     case LED_OUT_PIN:
-        state ? gpio_bit_set(GPIOA, GPIO_PIN_9) : gpio_bit_set(GPIOA, GPIO_PIN_9);
+        state ? gpio_bit_set(GPIOA, GPIO_PIN_9) : gpio_bit_reset(GPIOA, GPIO_PIN_9);
         break;
     default:
         break;
