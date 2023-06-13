@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-13 13:29:42
+ * @LastEditTime : 2023-06-13 15:50:37
  * @FilePath     : app.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -21,6 +21,7 @@ DEVICE_STATE Global_LockDevice_State = {CLOSE, CLOSE, EXTEND, EXTEND, DO_CLOSE, 
 static void Lock_Close(void)
 {
     Set_DO_State(DOOR_OUT_PIN, RESET);
+    // LED To RED
     Set_DO_State(LED_OUT_PIN, SET);
     Lock_OFF_Out();
     return;
@@ -32,6 +33,7 @@ static void Lock_Close(void)
 static void Lock_Open(void)
 {
     Set_DO_State(DOOR_OUT_PIN, SET);
+    // LED To GREEN
     Set_DO_State(LED_OUT_PIN, RESET);
     Lock_ON_Out();
     return;
@@ -54,7 +56,6 @@ void Get_LockDevice_State(void)
     FlagStatus Ret = RESET;
     // 通过门磁状态判断：门开-门关
     Ret = Get_DI_State(DOOR_PIN);
-    // printf("DOOR_PIN:%d\r\n", Ret);
     Global_LockDevice_State.DoorCurrentState = Ret ? OPEN : CLOSE;
 
     if (Global_LockDevice_State.DoorCurrentState != Global_LockDevice_State.LastDoorState)
@@ -63,29 +64,24 @@ void Get_LockDevice_State(void)
             printf("Door State Change, Now Open.\r\n");
         else
             printf("Door State Change, Now Close.\r\n");
-        //
         Global_LockDevice_State.LastDoorState = Global_LockDevice_State.DoorCurrentState;
     }
 
     // 通过锁舌状态判断：锁开-锁关
-    // Insert里边开锁，EXTEND外边关锁
+    // Insert-里边-开锁，EXTEND-外边-关锁
     Ret = Get_DI_State(TONGUE_PIN);
-    // printf("TONGUE_PIN:%d\r\n", Ret);
     Global_LockDevice_State.TongueState = Ret ? EXTEND : INSERT;
-    // printf("TongueState:%d\r\n", Global_LockDevice_State.TongueState);
     if (Global_LockDevice_State.TongueState != Global_LockDevice_State.LastTongueState)
     {
         if (Global_LockDevice_State.TongueState == INSERT)
             printf("Tongue State Change, Now Insert  [\r\n");
         else
             printf("Tongue State Change, Now Extend <[\r\n");
-        //
         Global_LockDevice_State.LastTongueState = Global_LockDevice_State.TongueState;
     }
 
     // 通过开门信号判断：外部开门
     Ret = Get_DI_State(OPEN_SIGNAL_PIN);
-    // printf("OPEN_SIGNAL_PIN:%d\r\n", Ret);
     Global_LockDevice_State.OpenSignalState = Ret ? DO_CLOSE : DO_OPEN;
     if (Global_LockDevice_State.OpenSignalState != Global_LockDevice_State.LastOpenSignalState)
     {
@@ -93,7 +89,6 @@ void Get_LockDevice_State(void)
             printf("Open Signal Change, Now Do Open.\r\n");
         else
             printf("Open Signal Change, Now Do Close.\r\n");
-        //
         Global_LockDevice_State.LastOpenSignalState = Global_LockDevice_State.OpenSignalState;
     }
     return;
@@ -160,7 +155,7 @@ static void Lock_Run_Control(void)
         if (Try_Time_Out(CtrlTimestamp.CurValue, CtrlTimestamp.LastValue, TIME_DELAY_DOOR_CLOSE_NO_OPEN))
         {
             Lock_Close();
-            printf("LOCK CLOSE(): %d\r\n", __LINE__);
+            printf("LockClose->1:%d delay-time:%d\r\n", __LINE__, TIME_DELAY_DOOR_CLOSE_NO_OPEN);
         }
     }
 
@@ -181,7 +176,7 @@ static void Lock_Run_Control(void)
         CtrlTimestamp.CurValue = Get_Current_TC();
         if (Try_Time_Out(CtrlTimestamp.CurValue, CtrlTimestamp.LastValue, TIME_DELAY_DOOR_OPEN_THEN_CLOSE))
         {
-            printf("LOCK CLOSE(): %d\r\n", __LINE__);
+            printf("LockClose->2:%d delay-time:%d\r\n", __LINE__, TIME_DELAY_DOOR_OPEN_THEN_CLOSE);
             Lock_Close();
             DoorOpenToCloseState = FALSE;
         }

@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:54:34
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-13 13:02:29
+ * @LastEditTime : 2023-06-13 15:54:50
  * @FilePath     : port.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -49,9 +49,25 @@ FlagStatus Get_DI_State(LOCK_DI_PIN port)
     switch (port)
     {
     case DOOR_PIN:
-        return gpio_input_bit_get(GPIOF, GPIO_PIN_1);
+        if (gpio_input_bit_get(GPIOF, GPIO_PIN_1) == 0)
+        {
+            Delay_Ms(100);
+            if (gpio_input_bit_get(GPIOF, GPIO_PIN_1) == 0)
+            {
+                return RESET;
+            }
+        }
+        return SET;
     case TONGUE_PIN:
-        return gpio_input_bit_get(GPIOA, GPIO_PIN_10);
+        if (gpio_input_bit_get(GPIOA, GPIO_PIN_10) == 0)
+        {
+            Delay_Ms(100);
+            if (gpio_input_bit_get(GPIOA, GPIO_PIN_10) == 0)
+            {
+                return RESET;
+            }
+        }
+        return SET;
     case OPEN_SIGNAL_PIN:
         if (gpio_input_bit_get(GPIOA, GPIO_PIN_2) == 0)
         {
