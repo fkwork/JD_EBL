@@ -97,10 +97,9 @@ void Get_LockDevice_State(void)
 static void Lock_Init_Control(void)
 {
     uint8_t index = 0;
-    for (index = 0; index < 50; index++)
+    for (index = 0; index < 5; index++)
     {
         Get_LockDevice_State();
-        Delay_Ms(5);
     }
 
     // 上电时，无门磁反馈, 电子锁自动开锁
@@ -207,7 +206,7 @@ void App_Running(void)
     for (;;)
     {
         Get_LockDevice_State();
-        // delay_1ms(2000);
+        delay_1ms(2000);
     }
 #endif
 }

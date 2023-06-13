@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\output\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\output\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Jun 13 15:45:54 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Jun 13 15:59:43 2023
 <BR><P>
 <H3>Maximum Stack Usage =         68 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -273,14 +273,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lock_ON_Out
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lock_OFF_Out
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_DI_State
-<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lock_Init_Control
 </UL>
 
 <P><STRONG><a name="[54]"></a>Get_Current_TC</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.Get_Current_TC))
 <BR><BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lock_Run_Control
 </UL>
 
-<P><STRONG><a name="[41]"></a>Get_DI_State</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, port.o(i.Get_DI_State))
+<P><STRONG><a name="[41]"></a>Get_DI_State</STRONG> (Thumb, 138 bytes, Stack size 8 bytes, port.o(i.Get_DI_State))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Get_DI_State &rArr; Delay_Ms
 </UL>
 <BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_input_bit_get
@@ -645,12 +644,11 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lock_Run_Control
 </UL>
 
-<P><STRONG><a name="[3c]"></a>Lock_Init_Control</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, app.o(i.Lock_Init_Control))
+<P><STRONG><a name="[3c]"></a>Lock_Init_Control</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, app.o(i.Lock_Init_Control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Lock_Init_Control &rArr; Get_LockDevice_State &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_LockDevice_State
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lock_Open
-<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_Ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Running
 </UL>

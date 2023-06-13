@@ -51,7 +51,7 @@ FlagStatus Get_DI_State(LOCK_DI_PIN port)
     case DOOR_PIN:
         if (gpio_input_bit_get(GPIOF, GPIO_PIN_1) == 0)
         {
-            Delay_Ms(100);
+            Delay_Ms(20);
             if (gpio_input_bit_get(GPIOF, GPIO_PIN_1) == 0)
             {
                 return RESET;
@@ -61,7 +61,7 @@ FlagStatus Get_DI_State(LOCK_DI_PIN port)
     case TONGUE_PIN:
         if (gpio_input_bit_get(GPIOA, GPIO_PIN_10) == 0)
         {
-            Delay_Ms(100);
+            Delay_Ms(20);
             if (gpio_input_bit_get(GPIOA, GPIO_PIN_10) == 0)
             {
                 return RESET;
