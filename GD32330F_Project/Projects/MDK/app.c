@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-14 07:53:56
+ * @LastEditTime : 2023-06-14 09:07:50
  * @FilePath     : app.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -13,7 +13,7 @@
 #include "timer.h"
 #include <stdio.h>
 
-DEVICE_STATE Global_LockDevice_State = {CLOSE, CLOSE, EXTEND, EXTEND, DO_CLOSE, DO_CLOSE};
+DEVICE_STATE Global_LockDevice_State = {CLOSE, CLOSE, EXTEND, EXTEND, DO_CLOSE, DO_CLOSE, WAIT_SIGNAL};
 
 /**
  *  func: 关闭锁
@@ -39,6 +39,7 @@ static void Lock_Open(void)
     return;
 }
 
+CTRL_TIMESTAMP RecordTimestamp = {0, 0};
 /**
     func: 读取DI输入，获取锁状态
     ----------------------------------------------------------
@@ -83,6 +84,20 @@ void Get_LockDevice_State(void)
     // 通过开门信号判断：外部开门
     Ret = Get_DI_State(OPEN_SIGNAL_PIN);
     Global_LockDevice_State.OpenSignalState = Ret ? DO_CLOSE : DO_OPEN;
+
+    // // 判断开门信号是不是一直在触发
+    if (Global_LockDevice_State.OpenSignalState == DO_OPEN)
+    {
+        if (Global_LockDevice_State.OpenSignalLongGive == WAIT_SIGNAL)
+        {
+            Global_LockDevice_State.OpenSignalLongGive = RESP_SIGNAL;
+        }
+    }
+    else
+    {
+        Global_LockDevice_State.OpenSignalLongGive = WAIT_SIGNAL;
+    }
+
     if (Global_LockDevice_State.OpenSignalState != Global_LockDevice_State.LastOpenSignalState)
     {
         if (Global_LockDevice_State.OpenSignalState == DO_OPEN)
@@ -138,12 +153,17 @@ CTRL_TIMESTAMP CtrlTimestamp = {0, 0};
 static void Lock_Run_Control(void)
 {
     // 接收到开锁信号, 锁舌收回, 开锁
-    if (Global_LockDevice_State.OpenSignalState == DO_OPEN)
+    // if (Global_LockDevice_State.OpenSignalState == DO_OPEN)
+    if (Global_LockDevice_State.OpenSignalLongGive == RESP_SIGNAL)
     {
         if (Global_LockDevice_State.TongueState == EXTEND)
         {
             Lock_Open();
             CtrlTimestamp.LastValue = Get_Current_TC();
+        }
+        if (Global_LockDevice_State.TongueState == INSERT)
+        {
+            Global_LockDevice_State.OpenSignalLongGive = HAVE_RESP_SIGNAL;
         }
     }
 
@@ -211,7 +231,7 @@ void App_Running(void)
         Lock_Run_Control();
     }
 
-#if 0
+#ifdef TEST_MODE
     for (;;)
     {
         Get_LockDevice_State();
