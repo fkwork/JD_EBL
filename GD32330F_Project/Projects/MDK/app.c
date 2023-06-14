@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-13 15:50:37
+ * @LastEditTime : 2023-06-14 07:53:56
  * @FilePath     : app.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -172,12 +172,21 @@ static void Lock_Run_Control(void)
 
     if (DoorOpenToCloseState == TRUE)
     {
-        CtrlTimestamp.CurValue = Get_Current_TC();
-        if (Try_Time_Out(CtrlTimestamp.CurValue, CtrlTimestamp.LastValue, TIME_DELAY_DOOR_OPEN_THEN_CLOSE))
+        // 没落锁之前门关后又开
+        if (Global_LockDevice_State.DoorCurrentState == OPEN && Global_LockDevice_State.TongueState == INSERT)
         {
-            printf("LockClose->2:%d delay-time:%d\r\n", __LINE__, TIME_DELAY_DOOR_OPEN_THEN_CLOSE);
-            Lock_Close();
+            printf("Before Locked Open the door again.\r\n");
             DoorOpenToCloseState = FALSE;
+        }
+        else
+        {
+            CtrlTimestamp.CurValue = Get_Current_TC();
+            if (Try_Time_Out(CtrlTimestamp.CurValue, CtrlTimestamp.LastValue, TIME_DELAY_DOOR_OPEN_THEN_CLOSE))
+            {
+                printf("LockClose->2:%d delay-time:%d\r\n", __LINE__, TIME_DELAY_DOOR_OPEN_THEN_CLOSE);
+                Lock_Close();
+                DoorOpenToCloseState = FALSE;
+            }
         }
     }
 
