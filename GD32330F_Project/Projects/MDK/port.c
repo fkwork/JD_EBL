@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:54:34
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-13 15:54:50
+ * @LastEditTime : 2023-06-14 09:53:22
  * @FilePath     : port.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -29,7 +29,8 @@ void Port_DO_Init(void)
     rcu_periph_clock_enable(RCU_GPIOA);
     gpio_mode_set(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO_PIN_1 | GPIO_PIN_9);
     gpio_output_options_set(GPIOA, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_1 | GPIO_PIN_9);
-    gpio_bit_reset(GPIOA, GPIO_PIN_1 | GPIO_PIN_9);
+    gpio_bit_reset(GPIOA, GPIO_PIN_1);
+    gpio_bit_set(GPIOA, GPIO_PIN_9);
 
     rcu_periph_clock_enable(RCU_GPIOB);
     gpio_mode_set(GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO_PIN_1);

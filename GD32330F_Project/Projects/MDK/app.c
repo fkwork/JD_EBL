@@ -2,7 +2,7 @@
  * @Author       : wang chao
  * @Date         : 2023-06-08 12:36:07
  * @LastEditors  : wang chao
- * @LastEditTime : 2023-06-14 09:07:50
+ * @LastEditTime : 2023-06-14 09:50:38
  * @FilePath     : app.c
  * @Description  :
  * Copyright 2023 BingShan, All Rights Reserved.
@@ -121,6 +121,11 @@ static void Lock_Init_Control(void)
     if (Global_LockDevice_State.DoorCurrentState == OPEN)
     {
         Lock_Open();
+    }
+    else
+    {
+        Set_DO_State(DOOR_OUT_PIN, RESET);
+        Set_DO_State(LED_OUT_PIN, SET);
     }
     return;
 }

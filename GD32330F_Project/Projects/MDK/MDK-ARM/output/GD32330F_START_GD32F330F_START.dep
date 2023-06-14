@@ -1,7 +1,7 @@
 Dependencies for Project 'GD32330F_START', Target 'GD32F330F_START': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (..\main.c)(0x64890925)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\ -I ..\..\..\Utilities -I ..\..\..\..\GD32F3x0_Firmware_Library\CMSIS -I ..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\GD\GD32F3x0\Include -I ..\..\..\..\GD32F3x0_Firmware_Library\GD32F3x0_standard_peripheral\Include -I ..\..\..\RTT-IC:\Users\wangchao\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include-D__UVISION_VERSION="534" -DGD32F330 -DUSE_STDPERIPH_DRIVER -DGD32F330-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
-I (..\app.h)(0x64890F43)
+I (..\app.h)(0x6489198A)
 I (..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\GD\GD32F3x0\Include\gd32f3x0.h)(0x648177D6)
 I (..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\core_cm4.h)(0x648156A6)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E3CC2)
@@ -96,8 +96,8 @@ I (..\..\..\..\GD32F3x0_Firmware_Library\GD32F3x0_standard_peripheral\Include\gd
 I (..\..\..\..\GD32F3x0_Firmware_Library\GD32F3x0_standard_peripheral\Include\gd32f3x0_misc.h)(0x648156A6)
 I (..\..\..\..\GD32F3x0_Firmware_Library\GD32F3x0_standard_peripheral\Include\gd32f3x0_tsi.h)(0x648156A6)
 I (..\systick.h)(0x64815E2D)
-F (..\app.c)(0x64891175)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\ -I ..\..\..\Utilities -I ..\..\..\..\GD32F3x0_Firmware_Library\CMSIS -I ..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\GD\GD32F3x0\Include -I ..\..\..\..\GD32F3x0_Firmware_Library\GD32F3x0_standard_peripheral\Include -I ..\..\..\RTT-IC:\Users\wangchao\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include-D__UVISION_VERSION="534" -DGD32F330 -DUSE_STDPERIPH_DRIVER -DGD32F330-o .\output\app.o --omf_browse .\output\app.crf --depend .\output\app.d)
-I (..\app.h)(0x64890F43)
+F (..\app.c)(0x64891DAE)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\ -I ..\..\..\Utilities -I ..\..\..\..\GD32F3x0_Firmware_Library\CMSIS -I ..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\GD\GD32F3x0\Include -I ..\..\..\..\GD32F3x0_Firmware_Library\GD32F3x0_standard_peripheral\Include -I ..\..\..\RTT-IC:\Users\wangchao\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include-D__UVISION_VERSION="534" -DGD32F330 -DUSE_STDPERIPH_DRIVER -DGD32F330-o .\output\app.o --omf_browse .\output\app.crf --depend .\output\app.d)
+I (..\app.h)(0x6489198A)
 I (..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\GD\GD32F3x0\Include\gd32f3x0.h)(0x648177D6)
 I (..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\core_cm4.h)(0x648156A6)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E3CC2)
@@ -134,7 +134,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5E8E3CC2)
 I (..\port.h)(0x64816BA2)
 I (..\timer.h)(0x648276A7)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x63FDE657)
-F (..\port.c)(0x6488217B)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\ -I ..\..\..\Utilities -I ..\..\..\..\GD32F3x0_Firmware_Library\CMSIS -I ..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\GD\GD32F3x0\Include -I ..\..\..\..\GD32F3x0_Firmware_Library\GD32F3x0_standard_peripheral\Include -I ..\..\..\RTT-IC:\Users\wangchao\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include-D__UVISION_VERSION="534" -DGD32F330 -DUSE_STDPERIPH_DRIVER -DGD32F330-o .\output\port.o --omf_browse .\output\port.crf --depend .\output\port.d)
+F (..\port.c)(0x64891D96)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\ -I ..\..\..\Utilities -I ..\..\..\..\GD32F3x0_Firmware_Library\CMSIS -I ..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\GD\GD32F3x0\Include -I ..\..\..\..\GD32F3x0_Firmware_Library\GD32F3x0_standard_peripheral\Include -I ..\..\..\RTT-IC:\Users\wangchao\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include-D__UVISION_VERSION="534" -DGD32F330 -DUSE_STDPERIPH_DRIVER -DGD32F330-o .\output\port.o --omf_browse .\output\port.crf --depend .\output\port.d)
 I (..\port.h)(0x64816BA2)
 I (..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\GD\GD32F3x0\Include\gd32f3x0.h)(0x648177D6)
 I (..\..\..\..\GD32F3x0_Firmware_Library\CMSIS\core_cm4.h)(0x648156A6)
